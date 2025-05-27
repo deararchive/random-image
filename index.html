@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Random Image Viewer</title>
   <style>
     body {
@@ -15,23 +17,24 @@
       max-width: 90%;
       max-height: 90%;
       border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
   </style>
 </head>
 <body>
-  <img id="randomImage" src="" alt="Random Image">
+  <img id="randomImage" src="" alt="Random Image" />
   <script>
-    // Array of image paths
+    // List of image paths (adjust names if yours differ)
     const images = [
       'images/photo1.jpg',
       'images/photo2.jpg',
       'images/photo3.jpg'
     ];
 
-    // Generate a random index
+    // Select a random image index
     const randomIndex = Math.floor(Math.random() * images.length);
 
-    // Set the src of the image tag
+    // Set the image src attribute to the chosen random image
     document.getElementById('randomImage').src = images[randomIndex];
   </script>
 </body>
