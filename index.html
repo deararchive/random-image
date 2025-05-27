@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Random Image Viewer</title>
+  <title>Random Image No Repeat</title>
   <style>
     body {
       background-color: #fefefe;
@@ -24,18 +24,34 @@
 <body>
   <img id="randomImage" src="" alt="Random Image" />
   <script>
-    // List of image paths (adjust names if yours differ)
     const images = [
       'images/photo1.jpg',
       'images/photo2.jpg',
       'images/photo3.jpg'
     ];
 
-    // Select a random image index
-    const randomIndex = Math.floor(Math.random() * images.length);
+    // Get the list of images already shown from localStorage, or empty array
+    let usedImages = JSON.parse(localStorage.getItem('usedImages')) || [];
 
-    // Set the image src attribute to the chosen random image
-    document.getElementById('randomImage').src = images[randomIndex];
+    // Get images that haven't been shown yet
+    let availableImages = images.filter(img => !usedImages.includes(img));
+
+    // Reset if all images have been shown
+    if (availableImages.length === 0) {
+      usedImages = [];
+      availableImages = [...images];
+    }
+
+    // Pick a random image from available ones
+    const randomIndex = Math.floor(Math.random() * availableImages.length);
+    const chosenImage = availableImages[randomIndex];
+
+    // Set the image src
+    document.getElementById('randomImage').src = chosenImage;
+
+    // Update usedImages and save back to localStorage
+    usedImages.push(chosenImage);
+    localStorage.setItem('usedImages', JSON.stringify(usedImages));
   </script>
 </body>
 </html>
