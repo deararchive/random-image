@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
   <title>Random Image Viewer</title>
   <style>
     body {
-      background-color: #FAF3E0;
-      font-family: 'EB Garamond', serif;
+      background-color: #fefefe;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -17,19 +15,23 @@
       max-width: 90%;
       max-height: 90%;
       border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
   </style>
 </head>
 <body>
-  <img id="randomImage" src="" alt="Memory Image">
+  <img id="randomImage" src="" alt="Random Image">
   <script>
+    // Array of image paths
     const images = [
       'images/photo1.jpg',
       'images/photo2.jpg',
       'images/photo3.jpg'
     ];
+
+    // Generate a random index
     const randomIndex = Math.floor(Math.random() * images.length);
+
+    // Set the src of the image tag
     document.getElementById('randomImage').src = images[randomIndex];
   </script>
 </body>
